@@ -5,9 +5,11 @@ class BoostLevel11GroupConan(ConanFile):
     name = "Boost.Level11Group"
     version = "1.64.0"
     generators = "txt"
+    settings = "os", "arch", "compiler", "build_type"    
     url = "https://github.com/bincrafters/conan-boost-level11group"
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
+    build_requires = "Boost.Build/1.64.0@bincrafters/testing"
     requires = "Boost.Algorithm/1.64.0@bincrafters/testing",\
         "Boost.Array/1.64.0@bincrafters/testing",\
         "Boost.Assert/1.64.0@bincrafters/testing",\
@@ -113,5 +115,3 @@ class BoostLevel11GroupConan(ConanFile):
         thread_types_dir = os.path.join(self.build_folder, "thread_types", "include")
         self.copy(pattern="*", dst="include", src=thread_types_dir)
         
-    def package_id(self):
-        self.info.header_only()
