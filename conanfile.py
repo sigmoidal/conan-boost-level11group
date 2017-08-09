@@ -4,12 +4,13 @@ from conans import ConanFile, tools, os
 class BoostLevel11GroupConan(ConanFile):
     name = "Boost.Level11Group"
     version = "1.64.0"
-    generators = "txt"
-    settings = "os", "arch", "compiler", "build_type"    
+    generators = "boost"
+    settings = "os", "arch", "compiler", "build_type"
     url = "https://github.com/bincrafters/conan-boost-level11group"
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
-    build_requires = "Boost.Build/1.64.0@bincrafters/testing"
+    build_requires = "Boost.Generator/0.0.1@bincrafters/testing"
+    lib_short_names = ["date_time", "pool", "serialization", "spirit", "thread"]
     requires = "Boost.Algorithm/1.64.0@bincrafters/testing",\
         "Boost.Array/1.64.0@bincrafters/testing",\
         "Boost.Assert/1.64.0@bincrafters/testing",\
@@ -98,20 +99,28 @@ class BoostLevel11GroupConan(ConanFile):
         self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
                  .format(self.version, "https://github.com/boostorg/thread"))
                
+    def build(self):
+        boost_build = self.deps_cpp_info["Boost.Build"]
+        b2_bin_name = "b2.exe" if self.settings.os == "Windows" else "b2"
+        b2_bin_dir_name = boost_build.bindirs[0]
+        b2_full_path = os.path.join(boost_build.rootpath, b2_bin_dir_name, b2_bin_name)
+
+        toolsets = {
+          'gcc': 'gcc',
+          'Visual Studio': 'msvc',
+          'clang': 'clang',
+          'apple-clang': 'darwin'}
+
+        b2_toolset = toolsets[str(self.settings.compiler)]
+        
+        self.run(b2_full_path + " -j4 -a --hash=yes toolset=" + b2_toolset)
+        
     def package(self):
-
-        date_time_dir = os.path.join(self.build_folder, "date_time", "include")
-        self.copy(pattern="*", dst="include", src=date_time_dir)
-
-        pool_dir = os.path.join(self.build_folder, "pool", "include")
-        self.copy(pattern="*", dst="include", src=pool_dir)
+        for lib_short_name in self.lib_short_names:
+            include_dir = os.path.join(self.build_folder, lib_short_name, "include")
+            self.copy(pattern="*", dst="include", src=include_dir)
+        lib_dir = os.path.join(self.build_folder, "stage/lib")
+        self.copy(pattern="*", dst="lib", src=lib_dir)
         
-        serialization_dir = os.path.join(self.build_folder, "serialization", "include")
-        self.copy(pattern="*", dst="include", src=serialization_dir)
-
-        spirit_dir = os.path.join(self.build_folder, "spirit", "include")
-        self.copy(pattern="*", dst="include", src=spirit_dir)
-
-        thread_types_dir = os.path.join(self.build_folder, "thread_types", "include")
-        self.copy(pattern="*", dst="include", src=thread_types_dir)
-        
+    def package_info(self):
+        self.cpp_info.libs = ["boost_%s"%(lib_short_name) for lib_short_name in self.lib_short_names ]
