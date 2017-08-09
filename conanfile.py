@@ -9,8 +9,8 @@ class BoostLevel11GroupConan(ConanFile):
     url = "https://github.com/bincrafters/conan-boost-level11group"
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
+    lib_short_names = ["date_time", "locale", "pool", "serialization", "spirit", "thread"]
     build_requires = "Boost.Generator/0.0.1@bincrafters/testing"
-    lib_short_names = ["date_time", "pool", "serialization", "spirit", "thread"]
     requires = "Boost.Algorithm/1.64.0@bincrafters/testing",\
         "Boost.Array/1.64.0@bincrafters/testing",\
         "Boost.Assert/1.64.0@bincrafters/testing",\
@@ -36,7 +36,6 @@ class BoostLevel11GroupConan(ConanFile):
         "Boost.Iostreams/1.64.0@bincrafters/testing",\
         "Boost.Iterator/1.64.0@bincrafters/testing",\
         "Boost.Lexical_Cast/1.64.0@bincrafters/testing",\
-        "Boost.Locale/1.64.0@bincrafters/testing",\
         "Boost.Math/1.64.0@bincrafters/testing",\
         "Boost.Move/1.64.0@bincrafters/testing",\
         "Boost.Mpl/1.64.0@bincrafters/testing",\
@@ -64,6 +63,9 @@ class BoostLevel11GroupConan(ConanFile):
     # Date_Time Dependencies
     # algorithm9 assert1 config0 io1 lexical_cast8 mpl5 range7 serialization11 smart_ptr4
     # static_assert1 throw_exception2 tokenizer6 type_traits3 utility5
+    
+    # Locale Dependencies
+    # assert1 config0 function5 iterator5 smart_ptr4 static_assert1 type_traits3
 
     # Pool Dependencies
     # assert1 config0 integer3 thread11 throw_exception2 type_traits3
@@ -84,20 +86,9 @@ class BoostLevel11GroupConan(ConanFile):
     # system3 throw_exception2 tuple4 type_traits3 utility5 winapi1
 
     def source(self):
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/date_time"))     
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/pool"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/serialization"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/spirit"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/thread"))
+        for lib_short_name in self.lib_short_names:
+            self.run("git clone --depth=50 --branch=boost-{0} https://github.com/boostorg/{1}.git"
+                     .format(self.version, lib_short_name))
                
     def build(self):
         boost_build = self.deps_cpp_info["Boost.Build"]
