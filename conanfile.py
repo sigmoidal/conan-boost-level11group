@@ -13,7 +13,7 @@ class BoostLevel11GroupConan(ConanFile):
     lib_short_names = ["date_time", "locale", "pool", "serialization", "spirit", "thread"]
     options = {"shared": [True, False]}
     default_options = "shared=False"
-    build_requires = "Boost.Generator/0.0.1@bincrafters/testing"
+    build_requires = "Boost.Generator/1.64.0@bincrafters/testing"
     requires = "Boost.Algorithm/1.64.0@bincrafters/testing",\
         "Boost.Array/1.64.0@bincrafters/testing",\
         "Boost.Assert/1.64.0@bincrafters/testing",\
