@@ -12,6 +12,6 @@ int main()
 	boost::spirit::qi::rule<char const*> test;
 	boost::pool<> p(sizeof(int));
 	boost::serialization::detail::stack_allocate<int>();
-	boost::thread thread;
+	boost::this_thread::get_id();
 }
 
