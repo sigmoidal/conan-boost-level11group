@@ -13,55 +13,55 @@ class BoostLevel11GroupConan(ConanFile):
     lib_short_names = ["date_time", "locale", "pool", "serialization", "spirit", "thread"]
     options = {"shared": [True, False]}
     default_options = "shared=False"
-    build_requires = "Boost.Generator/1.64.0@bincrafters/stable"
-    requires = "Boost.Algorithm/1.64.0@bincrafters/stable",\
-        "Boost.Array/1.64.0@bincrafters/stable",\
-        "Boost.Assert/1.64.0@bincrafters/stable",\
-        "Boost.Atomic/1.64.0@bincrafters/stable",\
-        "Boost.Bind/1.64.0@bincrafters/stable",\
-        "Boost.Chrono/1.64.0@bincrafters/stable",\
-        "Boost.Concept_Check/1.64.0@bincrafters/stable",\
-        "Boost.Config/1.64.0@bincrafters/stable",\
-        "Boost.Container/1.64.0@bincrafters/stable",\
-        "Boost.Core/1.64.0@bincrafters/stable",\
-        "Boost.Detail/1.64.0@bincrafters/stable",\
-        "Boost.Endian/1.64.0@bincrafters/stable",\
-        "Boost.Exception/1.64.0@bincrafters/stable",\
-        "Boost.Filesystem/1.64.0@bincrafters/stable",\
-        "Boost.Foreach/1.64.0@bincrafters/stable",\
-        "Boost.Function/1.64.0@bincrafters/stable",\
-        "Boost.Function_Types/1.64.0@bincrafters/stable",\
-        "Boost.Functional/1.64.0@bincrafters/stable",\
-        "Boost.Fusion/1.64.0@bincrafters/stable",\
-        "Boost.Integer/1.64.0@bincrafters/stable",\
-        "Boost.Intrusive/1.64.0@bincrafters/stable",\
-        "Boost.Io/1.64.0@bincrafters/stable",\
-        "Boost.Iostreams/1.64.0@bincrafters/stable",\
-        "Boost.Iterator/1.64.0@bincrafters/stable",\
-        "Boost.Lexical_Cast/1.64.0@bincrafters/stable",\
-        "Boost.Math/1.64.0@bincrafters/stable",\
-        "Boost.Move/1.64.0@bincrafters/stable",\
-        "Boost.Mpl/1.64.0@bincrafters/stable",\
-        "Boost.Optional/1.64.0@bincrafters/stable",\
-        "Boost.Phoenix/1.64.0@bincrafters/stable",\
-        "Boost.Predef/1.64.0@bincrafters/stable",\
-        "Boost.Preprocessor/1.64.0@bincrafters/stable",\
-        "Boost.Proto/1.64.0@bincrafters/stable",\
-        "Boost.Range/1.64.0@bincrafters/stable",\
-        "Boost.Regex/1.64.0@bincrafters/stable",\
-        "Boost.Smart_Ptr/1.64.0@bincrafters/stable",\
-        "Boost.Static_Assert/1.64.0@bincrafters/stable",\
-        "Boost.System/1.64.0@bincrafters/stable",\
-        "Boost.Throw_Exception/1.64.0@bincrafters/stable",\
-        "Boost.Tokenizer/1.64.0@bincrafters/stable",\
-        "Boost.Tti/1.64.0@bincrafters/stable",\
-        "Boost.Tuple/1.64.0@bincrafters/stable",\
-        "Boost.Type_Traits/1.64.0@bincrafters/stable",\
-        "Boost.Typeof/1.64.0@bincrafters/stable",\
-        "Boost.Unordered/1.64.0@bincrafters/stable",\
-        "Boost.Utility/1.64.0@bincrafters/stable",\
-        "Boost.Variant/1.64.0@bincrafters/stable",\
-        "Boost.Winapi/1.64.0@bincrafters/stable"
+    build_requires = "Boost.Generator/1.64.0@bincrafters/testing"
+    requires = "Boost.Algorithm/1.64.0@bincrafters/testing",\
+        "Boost.Array/1.64.0@bincrafters/testing",\
+        "Boost.Assert/1.64.0@bincrafters/testing",\
+        "Boost.Atomic/1.64.0@bincrafters/testing",\
+        "Boost.Bind/1.64.0@bincrafters/testing",\
+        "Boost.Chrono/1.64.0@bincrafters/testing",\
+        "Boost.Concept_Check/1.64.0@bincrafters/testing",\
+        "Boost.Config/1.64.0@bincrafters/testing",\
+        "Boost.Container/1.64.0@bincrafters/testing",\
+        "Boost.Core/1.64.0@bincrafters/testing",\
+        "Boost.Detail/1.64.0@bincrafters/testing",\
+        "Boost.Endian/1.64.0@bincrafters/testing",\
+        "Boost.Exception/1.64.0@bincrafters/testing",\
+        "Boost.Filesystem/1.64.0@bincrafters/testing",\
+        "Boost.Foreach/1.64.0@bincrafters/testing",\
+        "Boost.Function/1.64.0@bincrafters/testing",\
+        "Boost.Function_Types/1.64.0@bincrafters/testing",\
+        "Boost.Functional/1.64.0@bincrafters/testing",\
+        "Boost.Fusion/1.64.0@bincrafters/testing",\
+        "Boost.Integer/1.64.0@bincrafters/testing",\
+        "Boost.Intrusive/1.64.0@bincrafters/testing",\
+        "Boost.Io/1.64.0@bincrafters/testing",\
+        "Boost.Iostreams/1.64.0@bincrafters/testing",\
+        "Boost.Iterator/1.64.0@bincrafters/testing",\
+        "Boost.Lexical_Cast/1.64.0@bincrafters/testing",\
+        "Boost.Math/1.64.0@bincrafters/testing",\
+        "Boost.Move/1.64.0@bincrafters/testing",\
+        "Boost.Mpl/1.64.0@bincrafters/testing",\
+        "Boost.Optional/1.64.0@bincrafters/testing",\
+        "Boost.Phoenix/1.64.0@bincrafters/testing",\
+        "Boost.Predef/1.64.0@bincrafters/testing",\
+        "Boost.Preprocessor/1.64.0@bincrafters/testing",\
+        "Boost.Proto/1.64.0@bincrafters/testing",\
+        "Boost.Range/1.64.0@bincrafters/testing",\
+        "Boost.Regex/1.64.0@bincrafters/testing",\
+        "Boost.Smart_Ptr/1.64.0@bincrafters/testing",\
+        "Boost.Static_Assert/1.64.0@bincrafters/testing",\
+        "Boost.System/1.64.0@bincrafters/testing",\
+        "Boost.Throw_Exception/1.64.0@bincrafters/testing",\
+        "Boost.Tokenizer/1.64.0@bincrafters/testing",\
+        "Boost.Tti/1.64.0@bincrafters/testing",\
+        "Boost.Tuple/1.64.0@bincrafters/testing",\
+        "Boost.Type_Traits/1.64.0@bincrafters/testing",\
+        "Boost.Typeof/1.64.0@bincrafters/testing",\
+        "Boost.Unordered/1.64.0@bincrafters/testing",\
+        "Boost.Utility/1.64.0@bincrafters/testing",\
+        "Boost.Variant/1.64.0@bincrafters/testing",\
+        "Boost.Winapi/1.64.0@bincrafters/testing"
 
     # Date_Time Dependencies
     # algorithm9 assert1 config0 io1 lexical_cast8 mpl5 range7 serialization11 smart_ptr4
