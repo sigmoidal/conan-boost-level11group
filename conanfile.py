@@ -11,8 +11,8 @@ class BoostLevel11GroupConan(ConanFile):
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
     lib_short_names = ["date_time", "locale", "pool", "serialization", "spirit", "thread"]
-    options = {"shared": [True, False]}
-    default_options = "shared=False"
+    options = {"shared": [True, False], "use_icu": [True, False]}
+    default_options = "shared=False", "use_icu=True"
     build_requires = "Boost.Generator/1.65.1@bincrafters/testing"
     requires = "Boost.Algorithm/1.65.1@bincrafters/testing",\
         "Boost.Array/1.65.1@bincrafters/testing",\
@@ -88,6 +88,10 @@ class BoostLevel11GroupConan(ConanFile):
     # functional5 intrusive6 io1 move3 mpl5 optional5 predef0 preprocessor0 smart_ptr4 static_assert1
     # system3 throw_exception2 tuple4 type_traits3 utility5 winapi1
 
+    def requirements(self):
+        if self.options.use_icu:
+            self.requires("icu/59.1@bincrafters/testing")
+
     def source(self):
         boostorg_github = "https://github.com/boostorg"
         archive_name = "boost-" + self.version  
@@ -97,7 +101,14 @@ class BoostLevel11GroupConan(ConanFile):
             os.rename(lib_short_name + "-" + archive_name, lib_short_name)
 
     def build(self):
-        self.run(self.deps_user_info['Boost.Generator'].b2_command)
+        self.run(self.deps_user_info['Boost.Generator'].b2_command + self.b2_options)
+    
+    @property
+    def b2_options(self):
+        if self.options.use_icu:
+            return " boost.locale.iconv=off boost.locale.icu=on"
+        else:
+            return ""
 
     def package(self):
         self.copy(pattern="*", dst="lib", src="stage/lib")
@@ -109,3 +120,5 @@ class BoostLevel11GroupConan(ConanFile):
         self.user_info.lib_short_names = ",".join(self.lib_short_names)
         self.cpp_info.libs = self.collect_libs()
         self.cpp_info.defines.append("BOOST_ALL_NO_LIB=1")
+        if self.options.use_icu:
+            self.cpp_info.defines.append("BOOST_LOCALE_WITH_ICU=1")
