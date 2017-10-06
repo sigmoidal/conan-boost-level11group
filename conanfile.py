@@ -12,7 +12,7 @@ class BoostLevel11GroupConan(ConanFile):
     license = "www.boost.org/users/license.html"
     lib_short_names = ["date_time", "locale", "pool", "serialization", "spirit", "thread"]
     options = {"shared": [True, False], "use_icu": [True, False]}
-    default_options = "shared=False", "use_icu=True"
+    default_options = "shared=False", "use_icu=False"
     build_requires = "Boost.Generator/1.65.1@bincrafters/testing"
     requires = "Boost.Algorithm/1.65.1@bincrafters/testing",\
         "Boost.Array/1.65.1@bincrafters/testing",\
