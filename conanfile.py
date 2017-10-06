@@ -122,3 +122,5 @@ class BoostLevel11GroupConan(ConanFile):
         self.cpp_info.defines.append("BOOST_ALL_NO_LIB=1")
         if self.options.use_icu:
             self.cpp_info.defines.append("BOOST_LOCALE_WITH_ICU=1")
+        elif self.settings.os == "Macos":
+            self.cpp_info.libs.append("iconv")
