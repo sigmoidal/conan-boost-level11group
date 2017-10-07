@@ -1,6 +1,10 @@
 ## This repository holds a conan recipe for a cyclic dependency group featuring multiple libraries.
 
-[Conan.io](https://conan.io) package for [Boost.Level11Group](http://www.boost.org/doc/libs/1_64_0/libs/libraries.htm) 
+[![Build status](https://ci.appveyor.com/api/projects/status/88bnj1a4byydbka5/branch/stable/1.64.0?svg=true)](https://ci.appveyor.com/project/BinCrafters/conan-boost-level11group/branch/stable/1.64.0)
+[![Travis Status](https://travis-ci.org/bincrafters/conan-boost-level11group.svg?branch=stable%2F1.64.0)](https://travis-ci.org/bincrafters/conan-boost-level11group)
+[![Download](https://api.bintray.com/packages/bincrafters/public-conan/Boost.Level11Group%3Abincrafters/images/download.svg?version=1.64.0%3Astable) ](https://bintray.com/bincrafters/public-conan/Boost.Level11Group%3Abincrafters/1.64.0%3Astable/link)
+
+[Conan.io](https://conan.io) package for [Boost.Level11Group](http://www.boost.org/doc/libs/1_65_1/libs/libraries.htm) 
 
 The packages generated with this **conanfile** can be found in [Bintray](https://bintray.com/bincrafters/public-conan/Boost.Level11Group%3Abincrafters).
 
@@ -22,7 +26,7 @@ If you handle multiple dependencies in your project is better to add a *conanfil
     [generators]
     txt
 
-Note: It is recommended that you run conan install from a build directory and not the root of the project directory.  This is because conan generates *conanbuildinfo* files specific to a single build configuration which by default comes from an autodetected default profile located in ~/.conan/profiles/default .  If you pass different build configuration options to conan install, it will generate different *conanbuildinfo* files.  Thus, they shoudl not be added to the root of the project, nor committed to git. 
+Note: It is recommended that you run conan install from a build directory and not the root of the project directory.  This is because conan generates *conanbuildinfo* files specific to a single build configuration which by default comes from an autodetected default profile located in ~/.conan/profiles/default .  If you pass different build configuration options to conan install, it will generate different *conanbuildinfo* files.  Thus, they should not be added to the root of the project, nor committed to git. 
 
 ## For Packagers: Publish this Package
 
@@ -45,4 +49,4 @@ This package contains header-only libraries, so nothing needs to be built.
     $ conan upload --all --remote bincrafters Boost.Level11Group/1.64.0@bincrafters/stable
 
 ### License
-[Boost](LICENSE)
+[Boost](www.boost.org/LICENSE_1_0.txt)
