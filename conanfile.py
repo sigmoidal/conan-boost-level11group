@@ -124,3 +124,5 @@ class BoostLevel11GroupConan(ConanFile):
             self.cpp_info.defines.append("BOOST_LOCALE_WITH_ICU=1")
         elif self.settings.os == "Macos":
             self.cpp_info.libs.append("iconv")
+        if self.settings.os != "Windows": 
+            self.cpp_info.libs.append("pthread") 
