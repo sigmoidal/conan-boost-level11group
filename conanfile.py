@@ -108,7 +108,7 @@ class BoostLevel11GroupConan(ConanFile):
         if self.options.use_icu:
             return " boost.locale.iconv=off boost.locale.icu=on"
         else:
-            return ""
+            return " boost.locale.icu=off"
 
     def package(self):
         self.copy(pattern="*", dst="lib", src="stage/lib")
