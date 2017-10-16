@@ -99,8 +99,31 @@ class BoostLevel11GroupConan(ConanFile):
             tools.get("{0}/{1}/archive/{2}.tar.gz"
                 .format(boostorg_github, lib_short_name, archive_name))
             os.rename(lib_short_name + "-" + archive_name, lib_short_name)
-
+            
+        if self.options.use_icu:
+            # we need to patch the Jamfile.v2 of Boost.Regex (has_icu_test) when building static on windows 
+            #if not self.options.shared and self.settings.os == 'Windows':
+            tools.download(r'https://raw.githubusercontent.com/sigmoidal/conan-boost-level11group/testing/1.65.1/patch/Jamfile.v2.patch?{rand}'.format(rand=randint(0, 1000)), 'Jamfile.v2.patch');
+     
+            src_path = os.path.join(self.conanfile_directory, 'locale')
+            jamfile_to_patch = os.path.join(src_path, 'build', 'Jamfile.v2')
+            self.output.info("Patching: " + jamfile_to_patch)
+            
+            # to apply in subfolder
+            tools.patch(base_path=os.path.join('locale', 'build'), patch_file="Jamfile.v2.patch") 
+            
     def build(self):
+        #version = [ '4', '5', '8' ]
+        #result_x = 'gcc'.replace('gcc','g++') + "-" + version[0]
+        #result_xy = result_x + version[1] if version[1] != '0' else ''
+        #print("result_x: " + result_x)
+        #print("result_xy: " + result_xy)
+        #exit
+        if self.options.use_icu:
+            self.deps_cpp_info["icu"].cppflags
+            os.environ["ICU_PATH"] = self.deps_cpp_info["icu"].rootpath
+            self.output.info("Using ICU_PATH: " + os.environ["ICU_PATH"])
+
         self.run(self.deps_user_info['Boost.Generator'].b2_command + self.b2_options)
     
     @property
@@ -120,9 +143,9 @@ class BoostLevel11GroupConan(ConanFile):
         self.user_info.lib_short_names = ",".join(self.lib_short_names)
         self.cpp_info.libs = tools.collect_libs(self)
         self.cpp_info.defines.append("BOOST_ALL_NO_LIB=1")
+        if self.settings.os != "Windows":
+            self.cpp_info.libs.append("pthread")
         if self.options.use_icu:
             self.cpp_info.defines.append("BOOST_LOCALE_WITH_ICU=1")
         elif self.settings.os == "Macos":
             self.cpp_info.libs.append("iconv")
-        if self.settings.os != "Windows": 
-            self.cpp_info.libs.append("pthread") 

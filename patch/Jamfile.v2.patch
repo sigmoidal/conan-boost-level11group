@@ -1,0 +1,66 @@
+--- Jamfile.v2	2017-07-13 17:45:02.000000000 +0300
++++ Jamfile_new.v2	2017-10-16 18:53:29.154344000 +0300
+@@ -72,7 +72,6 @@
+ {
+     searched-lib icuuc : :  <name>icuuc
+                             <search>$(ICU_PATH)/lib 
+-                            <link>shared 
+                             <runtime-link>shared ;
+ 
+     searched-lib icuuc : :  <toolset>msvc
+@@ -84,9 +83,10 @@
+ 
+     searched-lib icuuc : :  <name>this_is_an_invalid_library_name ;
+ 
++	
++	
+     searched-lib icudt : :  <search>$(ICU_PATH)/lib
+                             <name>icudata
+-                            <link>shared
+                             <runtime-link>shared ;
+ 
+     searched-lib icudt : :  <search>$(ICU_PATH)/lib
+@@ -97,9 +97,10 @@
+ 
+     searched-lib icudt : :  <name>this_is_an_invalid_library_name ;
+ 
++	
++	
+     searched-lib icuin : :  <search>$(ICU_PATH)/lib
+                             <name>icui18n
+-                            <link>shared
+                             <runtime-link>shared ;
+ 
+     searched-lib icuin : :  <toolset>msvc
+@@ -131,7 +132,6 @@
+ 
+     searched-lib icuuc_64 : :   <name>icuuc
+                                 <search>$(ICU_PATH)/lib64 
+-                                <link>shared 
+                                 <runtime-link>shared ;
+ 
+     searched-lib icuuc_64 : :   <toolset>msvc
+@@ -143,9 +143,10 @@
+ 
+     searched-lib icuuc_64 : :   <name>this_is_an_invalid_library_name ;
+ 
++	
++	
+     searched-lib icudt_64 : :   <search>$(ICU_PATH)/lib64
+                                 <name>icudata
+-                                <link>shared
+                                 <runtime-link>shared ;
+ 
+     searched-lib icudt_64 : :   <search>$(ICU_PATH)/lib64
+@@ -156,9 +157,10 @@
+ 
+     searched-lib icudt_64 : :   <name>this_is_an_invalid_library_name ;
+ 
++	
++	
+     searched-lib icuin_64 : :   <search>$(ICU_PATH)/lib64
+                                 <name>icui18n
+-                                <link>shared
+                                 <runtime-link>shared ;
+ 
+     searched-lib icuin_64 : :   <toolset>msvc
