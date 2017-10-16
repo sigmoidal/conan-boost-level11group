@@ -1,5 +1,5 @@
 from conans import ConanFile, tools, os
-
+from random import randint
 
 class BoostLevel11GroupConan(ConanFile):
     name = "Boost.Level11Group"
@@ -113,12 +113,6 @@ class BoostLevel11GroupConan(ConanFile):
             tools.patch(base_path=os.path.join('locale', 'build'), patch_file="Jamfile.v2.patch") 
             
     def build(self):
-        #version = [ '4', '5', '8' ]
-        #result_x = 'gcc'.replace('gcc','g++') + "-" + version[0]
-        #result_xy = result_x + version[1] if version[1] != '0' else ''
-        #print("result_x: " + result_x)
-        #print("result_xy: " + result_xy)
-        #exit
         if self.options.use_icu:
             self.deps_cpp_info["icu"].cppflags
             os.environ["ICU_PATH"] = self.deps_cpp_info["icu"].rootpath

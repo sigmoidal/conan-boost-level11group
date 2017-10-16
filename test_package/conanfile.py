@@ -4,6 +4,10 @@ import os
 
 class TestPackageConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
+    
+    options = {"shared": [True, False], "use_icu": [True, False]}
+    default_options = "shared=False", "use_icu=False"
+    
     generators = "cmake"
 
     def build(self):
