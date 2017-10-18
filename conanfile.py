@@ -88,6 +88,8 @@ class BoostLevel11GroupConan(ConanFile):
     # functional5 intrusive6 io1 move3 mpl5 optional5 predef0 preprocessor0 smart_ptr4 static_assert1
     # system3 throw_exception2 tuple4 type_traits3 utility5 winapi1
 
+    patch_url = r'https://raw.githubusercontent.com/sigmoidal/conan-boost-level11group/testing/1.65.1/patch/Jamfile.v2.patch?{rand}'.format(rand=randint(0, 1000))
+    
     def requirements(self):
         if self.options.use_icu:
             self.requires("icu/59.1@bincrafters/testing")
@@ -101,12 +103,8 @@ class BoostLevel11GroupConan(ConanFile):
             os.rename(lib_short_name + "-" + archive_name, lib_short_name)
             
         if self.options.use_icu:
-            # we need to patch the Jamfile.v2 of Boost.Regex (has_icu_test) when building static on windows 
-            #if not self.options.shared and self.settings.os == 'Windows':
-            tools.download(r'https://raw.githubusercontent.com/sigmoidal/conan-boost-level11group/testing/1.65.1/patch/Jamfile.v2.patch?{rand}'.format(rand=randint(0, 1000)), 'Jamfile.v2.patch');
-     
-            src_path = os.path.join(self.conanfile_directory, 'locale')
-            jamfile_to_patch = os.path.join(src_path, 'build', 'Jamfile.v2')
+            tools.download(self.patch_url, 'Jamfile.v2.patch');
+            jamfile_to_patch = os.path.join('locale', 'build', 'Jamfile.v2')
             self.output.info("Patching: " + jamfile_to_patch)
             
             # to apply in subfolder

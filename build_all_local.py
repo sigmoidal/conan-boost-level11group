@@ -96,8 +96,8 @@ def main(target_os):
                                -o Boost.Locale:use_icu=True \
                                -o Boost.Regex:use_icu=True \
                                -o Boost.Iostreams:use_icu=True \
-                               -o Boost.Locale:shared=False \
-                               -o Boost.Regex:shared=False \
+                               -o Boost.Locale:shared={link} \
+                               -o Boost.Regex:shared={link} \
                                -o icu:shared={link} 2>&1 | tee {name}-{version}-{arch}-{build_type}-{link_str}-{used_compiler}.log'.format(name=name,
                                                                                                                                            version=version,
                                                                                                                                            channel=channel, 
@@ -130,7 +130,11 @@ def main(target_os):
                                -s compiler.version={compiler_v} \
                                -o {name}:use_icu=True \
                                -o {name}:shared={link} \
-                               -o icu:shared={link} 2>&1 | tee {name}-{version}-{arch}-{build_type}-{link_str}-{used_compiler}.log'.format(name=name,
+                               -o Boost.Locale:use_icu=True \
+                               -o Boost.Regex:use_icu=True \
+                               -o Boost.Locale:shared={link} \
+                               -o Boost.Regex:shared={link} \
+                               -o icu:shared={link} --build missing 2>&1 | tee {name}-{version}-{arch}-{build_type}-{link_str}-{used_compiler}.log'.format(name=name,
                                                                                                                                            version=version,
                                                                                                                                            channel=channel, 
                                                                                                                                            arch=arch, 
