@@ -95,7 +95,6 @@ def main(target_os):
                                -o {name}:shared={link} \
                                -o Boost.Locale:use_icu=True \
                                -o Boost.Regex:use_icu=True \
-                               -o Boost.Iostreams:use_icu=True \
                                -o Boost.Locale:shared={link} \
                                -o Boost.Regex:shared={link} \
                                -o icu:shared={link} 2>&1 | tee {name}-{version}-{arch}-{build_type}-{link_str}-{used_compiler}.log'.format(name=name,
