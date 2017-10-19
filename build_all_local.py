@@ -97,7 +97,7 @@ def main(target_os):
                                -o Boost.Regex:use_icu=True \
                                -o Boost.Locale:shared={link} \
                                -o Boost.Regex:shared={link} \
-                               -o icu:shared={link} 2>&1 | tee {name}-{version}-{arch}-{build_type}-{link_str}-{used_compiler}.log'.format(name=name,
+                               -o icu:shared={link} --build missing 2>&1 | tee {name}-{version}-{arch}-{build_type}-{link_str}-{used_compiler}.log'.format(name=name,
                                                                                                                                            version=version,
                                                                                                                                            channel=channel, 
                                                                                                                                            profile='gcc%s' % compiler_major_version,
